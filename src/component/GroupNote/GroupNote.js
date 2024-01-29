@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GroupCard from '../GroupCard/GroupCard'
 import NotesCard from '../NotesCard/NotesCard';
 import Styles from './GroupNotes.module.css';
 import sendBtn from '../../assets/icons/Vector.png';
+import leftArrow from '../../assets/icons/left-arrow.png';
 
 const GroupNote = ({ selectedNote, selectedGroup, addnewNote }) => {
     const [newNote, setNewNotes] = useState(null)
@@ -28,8 +29,16 @@ const GroupNote = ({ selectedNote, selectedGroup, addnewNote }) => {
         setNewNotes("") ;
     };
 
+    const [showArrow,setShowArrow]=useState(false);
+    useEffect(()=>{
+        if(window.innerWidth<=400){
+            setShowArrow(true);
+        }
+    },[]);
+
     return <div className={Styles.group_notes}>
-        <header className={Styles.group_card} style={{ backgroundColor: '', cursor: '', margin: 0, padding: "5px" }}>
+        <header className={Styles.group_card} style={{ margin: 0, padding: "5px" }}>
+           {showArrow&&<img src={leftArrow} alt="leftArrow"/>} 
             <div className={Styles.notes_symbol} style={{ backgroundColor: `${selectedNote.color}` }}>{notesSymbol}</div>
             <b>{selectedGroup}</b>
         </header>

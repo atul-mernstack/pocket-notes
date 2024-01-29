@@ -74,23 +74,19 @@ const HomeComponent = () => {
        setSelectedNote(allGroups[selectedGroup])
        //setCreateGroup(false)
   }
-  return <div>
-    <div>
+  return <>    
     <div className={Styles.pocket_notes}>
       <Sidebar notes={notes} selectGroup={selectGroup} selectedGroup={selectedGroup} addGroup={addGroup} />
-      { selectedGroup&& <GroupNote addnewNote ={addnewNote} selectedNote={selectedNote} selectedGroup={selectedGroup} />}
+      { selectedGroup?(<GroupNote addnewNote ={addnewNote} selectedNote={selectedNote} selectedGroup={selectedGroup}/>):
+      (<MainviewComponent/>)}
 
     </div>
     <div className={Styles.create_group}>
       {
         createGroup && <CreateGroup  handleOutsideClick={handleOutsideClick}createGroup={createGroupfun}/>
       }
-    </div>
-    </div>
-    <div>
-<MainviewComponent/>
-    </div>   
-  </div>
+    </div>    
+  </>
 }
 
 export default HomeComponent;

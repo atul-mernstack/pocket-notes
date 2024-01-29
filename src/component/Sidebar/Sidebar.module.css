@@ -20,3 +20,10 @@
     bottom: 2.5vh;
     left: 15vw;
 }
+
+
+/* @media only screen and (max-width: 400px) {
+   .left_section{
+    width:100%;
+   }
+  } */
