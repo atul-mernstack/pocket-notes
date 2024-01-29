@@ -1,0 +1,18 @@
+.group_card>div{
+    border-radius: 50%;
+    height: 3vmax;
+    width: 3vmax;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1vmax;
+    text-align:center;
+    color: white;
+}
+
+.group_card{
+    display: flex;
+    align-items: center;
+    margin-top: 1.5vmax;
+    cursor: pointer;
+}

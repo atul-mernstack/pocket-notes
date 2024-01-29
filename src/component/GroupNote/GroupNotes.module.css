@@ -1,0 +1,76 @@
+.group_notes{
+    background-color: darkgray;
+}
+
+.note_card{
+    width: 95%;
+    background-color: blueviolet;
+    margin: 1vmax 1.5vmax 1vmax 1.5vmax;
+    box-shadow: 2px 1px 12px 0px rgba(0,0,0,0.75);
+    border-radius: 2px;
+    padding: 1vmax 1.5vmax 1vmax 1.5vmax ;
+}
+
+.group_card>div{
+    border-radius: 50%;    
+    height: 3vmax;
+    width: 3vmax;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1vmax;
+    margin-left: 1vmax;
+    text-align:center;
+    
+}
+
+.group_card{
+    display: flex;
+    align-items: center;
+    margin-top: 1.5vmax;
+    cursor: pointer;
+    background-color: blue;
+    padding: 5px;
+    cursor: default;
+    height: 8vh;
+    color: white;
+}
+
+.create_note{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    background-color: blue;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+}
+
+.create_note>textarea{
+    position: fixed;
+    right: 24px;
+    font-size: large;
+    min-height: 10vh;
+    width: 72%;
+    outline: none;    
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.create_note>button{
+    position: fixed;
+    right: 40px;
+    border:0px;
+    background-color: transparent;
+    border: none;
+}
+
+.notes_wrapper{
+    margin: 5px;
+    max-height: 70vh;
+    overflow-x:hidden;
+    overflow-y: auto;
+}

@@ -1,0 +1,42 @@
+.popup{
+    position: relative;
+    width: 350px;
+    height: 150px;
+    padding: 2vh;
+    border-radius: 5px;
+   background-color: white;
+   box-shadow: 2px 1px 12px 0px rgba(255,255,255,0.75);
+}
+
+.create_group_btn>button{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: blue;
+    width:70px;
+    height: 20px;
+    border-radius: 5px;
+    color: white;
+}
+
+.input_group{
+    height:30px;
+    width: 200px;
+    border-radius: 10px;
+    outline: 1px lightgray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.color_group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.color{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}

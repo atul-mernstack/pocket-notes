@@ -1,0 +1,17 @@
+.note_card{
+    position: relative;
+    max-width: 70vw;
+    min-height: 100px;
+    background-color: white;
+    margin: 1vmax 1.5vmax 1vmax 2vmax;
+    box-shadow: 2px 1px 12px 0px rgba(0,0,0,0.75);
+    border-radius: 2px;
+    padding: 1vmax 1.5vmax 1vmax 1.5vmax ;
+    
+}
+
+.notes_timestamp{
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}

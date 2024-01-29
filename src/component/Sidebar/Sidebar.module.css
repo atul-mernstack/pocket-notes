@@ -1,0 +1,22 @@
+.groupList{
+    margin: 5px;
+    max-height: 80vh;   
+    overflow-x:hidden;
+    overflow-y: auto;
+
+}
+.left_section{
+    height: 100vh;
+    padding: 2vmax;
+    color: black;
+    /* width: 20vw; */
+    background-color: white;
+    box-shadow: 2px 1px 12px 0px rgba(255,255,255,0.75);
+}
+.addnote_btn{
+    cursor: pointer;
+    width: 3vmax;
+    position: fixed;
+    bottom: 2.5vh;
+    left: 15vw;
+}

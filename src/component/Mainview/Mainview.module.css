@@ -1,0 +1,9 @@
+.mainview{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    width: 70vw;
+    margin-left: 26vw;
+}
