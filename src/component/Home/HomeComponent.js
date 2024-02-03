@@ -4,11 +4,14 @@ import GroupNote from '../GroupNote/GroupNote';
 import Styles from './HomeComponent.module.css';
 import CreateGroup from '../CreateGroup/CreateGroup';
 import { MainviewComponent } from '../Mainview/MainviewComponent';
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const HomeComponent = () => {
   const [notes, setnotes] = useState();
   const [selectedGroup, setSelectedGroup] = useState(null)
   const [selectedNote, setSelectedNote] = useState("")
   const [createGroup, setCreateGroup] = useState(false)
+  const [isMobileView,setIsMobileView]=useState(true);
   const getData = async () => {
     // let obj={
     //     "HTML Notes":{"color":"#752342","val":[{"text":"HT Notes","date":new Date()},{"text":"H2","date":new Date() },{"text":"H2","date":new Date() },{"text":"HT Notes","date":new Date()},{"text":"H2","date":new Date() },{"text":"H2","date":new Date() },{"text":"HT Notes","date":new Date()},{"text":"H2","date":new Date() },{"text":"H2","date":new Date() },{"text":"HT Notes","date":new Date()},{"text":"H2","date":new Date() },{"text":"H2","date":new Date() }]},
@@ -28,14 +31,22 @@ const HomeComponent = () => {
   const selectGroup = (groupName) => {
 
     setSelectedNote(notes[groupName])
-    setSelectedGroup(groupName)
+    setSelectedGroup(groupName);
+    if(window.innerWidth<=480){
+      setIsMobileView(false);
+    }
+      
     // alert(selectedGroup)
   }
   const addGroup = () => {
     setCreateGroup(true)
   }
   const createGroupfun=async(data)=>{
-         console.log(data)
+         
+         if(notes&&notes[data.name]){
+          toast('Group already exist!');
+          return;
+         }
          let allGroups={
           ...notes,
           [data.name]:{
@@ -76,8 +87,9 @@ const HomeComponent = () => {
   }
   return <>    
     <div className={Styles.pocket_notes}>
-      <Sidebar notes={notes} selectGroup={selectGroup} selectedGroup={selectedGroup} addGroup={addGroup} />
-      { selectedGroup?(<GroupNote addnewNote ={addnewNote} selectedNote={selectedNote} selectedGroup={selectedGroup}/>):
+      {isMobileView&&<Sidebar notes={notes} selectGroup={selectGroup} selectedGroup={selectedGroup} addGroup={addGroup} />}
+      
+      { selectedGroup?(<GroupNote addnewNote ={addnewNote} setIsMobileView={setIsMobileView} setSelectedGroup={setSelectedGroup} selectedNote={selectedNote} selectedGroup={selectedGroup}/>):
       (<MainviewComponent/>)}
 
     </div>

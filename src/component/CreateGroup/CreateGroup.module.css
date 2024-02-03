@@ -5,7 +5,7 @@
     padding: 2vh;
     border-radius: 5px;
    background-color: white;
-   box-shadow: 2px 1px 12px 0px rgba(255,255,255,0.75);
+   box-shadow: 2px 1px 12px 0px rgba(129, 126, 126, 0.75);
 }
 
 .create_group_btn>button{
@@ -30,8 +30,8 @@
 
 .color_group{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    /* flex-direction: row; */
+    justify-content: space-between;   
 }
 
 .color{
@@ -39,4 +39,20 @@
     height: 25px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+@media screen and (max-width:480px) {
+    .input_group{
+        width: 49vw;       
+    }
+
+    .popup{
+        width: 85vw;
+    }
+
+    .create_group_btn>button{
+        right: 25%;  
+        width:150px;
+        height:30px; 
+    }
 }

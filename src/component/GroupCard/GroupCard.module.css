@@ -16,3 +16,11 @@
     margin-top: 1.5vmax;
     cursor: pointer;
 }
+
+@media screen and (max-width :480px){
+    .group_card>div{     
+        height: 5vmax;
+        width: 5vmax;
+       
+    }
+}
