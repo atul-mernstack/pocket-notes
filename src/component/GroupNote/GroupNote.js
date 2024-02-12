@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import GroupCard from '../GroupCard/GroupCard'
+import React, { useEffect, useState } from 'react';
 import NotesCard from '../NotesCard/NotesCard';
 import Styles from './GroupNotes.module.css';
 import sendBtn from '../../assets/icons/Vector.png';
@@ -23,7 +22,6 @@ const GroupNote = ({ selectedNote, selectedGroup, addnewNote,setIsMobileView,set
         }
     }
     notesSymbol = notesSymbol.toUpperCase();
-
     const handleAddNotes=()=>{
         addnewNote(newNote); 
         setNewNotes("") ;

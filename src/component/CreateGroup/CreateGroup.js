@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Styles from './CreateGroup.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const CreateGroup = ({handleOutsideClick, createGroup }) => {
+const CreateGroup = ({createGroup, onClose }) => {
   const [text, setText] = useState("");
   const [color, setColor] = useState("");
+  const dialogRef = useRef(null);
   const submitHandler = () => {
     const data = {
       name: text,
@@ -22,10 +23,25 @@ const CreateGroup = ({handleOutsideClick, createGroup }) => {
     }
     if(isValid){
       createGroup(data);
+      onClose();
     }
     
   }
-  return <div onClick={(e)=>handleOutsideClick(e)} className={`${Styles.popup} "popup"`}>    
+  
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dialogRef.current && !dialogRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose]);
+
+  return <div className={`${Styles.popup} "popup"`} ref={dialogRef}>    
       <h3 style={{marginTop:'-10px'}}>Create new group</h3>    
        <label for="groupname">Group Name&nbsp;&nbsp;&nbsp;</label>
        <input
@@ -40,11 +56,7 @@ const CreateGroup = ({handleOutsideClick, createGroup }) => {
          placeholder='Enter group name'/><br/>
         <div className={Styles.color_group}>
         <label for="favcolor">Choose Color&nbsp;&nbsp;&nbsp;</label>
-       {/* <input type="color" 
-       id="favcolor" 
-       onChange={(e)=>setColor(e.target.value)} 
-       value={color}
-        name="favcolor" /><br/> */}
+      
         <div className={Styles.color} style={{backgroundColor:'#4edd27'}} onClick={()=>setColor('#4edd27')}></div>
         <div className={Styles.color} style={{backgroundColor:'orange'}} onClick={()=>setColor('orange')}></div>
         <div className={Styles.color} style={{backgroundColor:'#6dcedf'}} onClick={()=>setColor('#6dcedf')}></div>
@@ -52,7 +64,7 @@ const CreateGroup = ({handleOutsideClick, createGroup }) => {
         <div className={Styles.color} style={{backgroundColor:'blue'}} onClick={()=>setColor('blue')}></div>
         <div className={Styles.color} style={{backgroundColor:'#c4649c'}} onClick={()=>setColor('#c4649c')}></div>
         </div >
-  <div className={Styles.create_group_btn}><button onClick={submitHandler}>Create</button></div>      
+  <div className={Styles.create_group_btn}><button onClick={e=>{submitHandler();}}>Create</button></div>      
   <ToastContainer/>  
   </div >
 }

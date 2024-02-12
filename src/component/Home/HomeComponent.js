@@ -12,12 +12,7 @@ const HomeComponent = () => {
   const [selectedNote, setSelectedNote] = useState("")
   const [createGroup, setCreateGroup] = useState(false)
   const [isMobileView,setIsMobileView]=useState(true);
-  const getData = async () => {
-    // let obj={
-    //     "HTML Notes":{"color":"#752342","val":[{"text":"HT Notes","date":new Date()},{"text":"H2","date":new Date() },{"text":"H2","date":new Date() },{"text":"HT Notes","date":new Date()},{"text":"H2","date":new Date() },{"text":"H2","date":new Date() },{"text":"HT Notes","date":new Date()},{"text":"H2","date":new Date() },{"text":"H2","date":new Date() },{"text":"HT Notes","date":new Date()},{"text":"H2","date":new Date() },{"text":"H2","date":new Date() }]},
-    //     "CSS CN":{"color":"#FF0000","val":[{"text":"1T","date":new Date() },{"text":"33","date":new Date() }]}
-    // }
-    // await localStorage.setItem("notes",JSON.stringify(obj))
+  const getData = async () => { 
     let notes = await localStorage.getItem("notes")
     if (notes) {
       let data = JSON.parse(notes)
@@ -34,13 +29,17 @@ const HomeComponent = () => {
     setSelectedGroup(groupName);
     if(window.innerWidth<=480){
       setIsMobileView(false);
-    }
-      
-    // alert(selectedGroup)
+    }      
+  
   }
-  const addGroup = () => {
+  const openDialog = () => {
     setCreateGroup(true)
   }
+
+  const closeDialog=()=>{
+    setCreateGroup(false);
+  }
+
   const createGroupfun=async(data)=>{
          
          if(notes&&notes[data.name]){
@@ -56,38 +55,21 @@ const HomeComponent = () => {
          }
          await localStorage.setItem("notes",JSON.stringify(allGroups));
          setnotes(allGroups);
-         setCreateGroup(false)
+          }
 
-  }
- // const [isPopupOpen, setPopupOpen] = useState(false);
- const handleOutsideClick = (event) => {
-  // if (createGroup && !event.target.closest('.popup')) {
-  //   setCreateGroup(false);
-  // }
-};
-
-  // useEffect(() => {
-    
-  //  document.addEventListener('click', handleOutsideClick);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleOutsideClick);
-  //   };
-  // }, [createGroup]);
-  const addnewNote=async(note)=>{
-      //alert(note)
+  const addnewNote=async(note)=>{    
       let allGroups={
         ...notes
        }
        allGroups[selectedGroup].val.push({text:note,date:new Date()})
        await localStorage.setItem("notes",JSON.stringify(allGroups));
        setnotes(allGroups);
-       setSelectedNote(allGroups[selectedGroup])
-       //setCreateGroup(false)
+       setSelectedNote(allGroups[selectedGroup]);       
   }
+
   return <>    
     <div className={Styles.pocket_notes}>
-      {isMobileView&&<Sidebar notes={notes} selectGroup={selectGroup} selectedGroup={selectedGroup} addGroup={addGroup} />}
+      {isMobileView&&<Sidebar notes={notes} selectGroup={selectGroup} selectedGroup={selectedGroup} addGroup={openDialog} />}
       
       { selectedGroup?(<GroupNote addnewNote ={addnewNote} setIsMobileView={setIsMobileView} setSelectedGroup={setSelectedGroup} selectedNote={selectedNote} selectedGroup={selectedGroup}/>):
       (<MainviewComponent/>)}
@@ -95,7 +77,7 @@ const HomeComponent = () => {
     </div>
     <div className={Styles.create_group}>
       {
-        createGroup && <CreateGroup  handleOutsideClick={handleOutsideClick}createGroup={createGroupfun}/>
+        createGroup && <CreateGroup onClose={closeDialog} createGroup={createGroupfun}/>
       }
     </div>    
   </>

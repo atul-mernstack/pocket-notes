@@ -3,8 +3,7 @@ import Styles from "./GroupCard.module.css";
 const GroupCard = ({ color,group,selectedGroup, selectGroup }) => {
   const [isSelectedGrp,setIsSelectedGrp]=useState();
   let notesName = group.split(" ");
-  let notesSymbol = "";
-  console.log(notesName)
+  let notesSymbol = "";  
   let notesNameLength = notesName.length;
   if( notesNameLength===1){
     notesSymbol=notesName[0].charAt(0)+notesName[0].charAt(1);
@@ -18,20 +17,10 @@ const GroupCard = ({ color,group,selectedGroup, selectGroup }) => {
     }
   }
   
-  notesSymbol = notesSymbol.toUpperCase();
-  console.log(color)
-  console.log(notesSymbol)
-  
-  // if(!color){
-  //   color="#764534"
-  // }
-
+  notesSymbol = notesSymbol.toUpperCase(); 
  
   const handleSelectGroup=(group)=>{
-    console.log(group);
-
-      selectGroup(group)
-      
+      selectGroup(group);      
       setIsSelectedGrp(group);
   };
 
